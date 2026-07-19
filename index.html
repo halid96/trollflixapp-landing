@@ -524,11 +524,11 @@
             data-testid="site-header"
         >
             <div
-                class="max-w-7xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between"
+                class="relative max-w-7xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between"
             >
                 <a
                     href="#top"
-                    class="flex items-center gap-2 group"
+                    class="flex items-center gap-2.5 group"
                     data-testid="logo-link"
                 >
                     <div class="w-9 h-9 flex items-center justify-center">
@@ -539,17 +539,20 @@
                             aria-hidden="true"
                         />
                     </div>
-                    <span class="font-display font-bold tracking-tight text-lg"
-                        ><span class="text-brand">troll</span
-                        ><span class="text-white">flix</span></span
-                    >
-                    <span
-                        class="ml-2 hidden xl:inline-block text-[10px] font-mono text-brand border border-brand/60 px-1.5 py-0.5 uppercase"
-                        >invite only</span
-                    >
+                    <span class="flex flex-col items-start leading-none gap-1">
+                        <span
+                            class="font-display font-bold tracking-tight text-lg"
+                            ><span class="text-brand">troll</span
+                            ><span class="text-white">flix</span></span
+                        >
+                        <span
+                            class="text-[9px] font-mono text-brand border border-brand/60 px-1.5 py-0.5 uppercase leading-none"
+                            >invite only</span
+                        >
+                    </span>
                 </a>
                 <nav
-                    class="hidden lg:flex items-center gap-3 xl:gap-5 text-xs xl:text-sm text-muted"
+                    class="hidden lg:flex items-center gap-3 xl:gap-5 text-xs xl:text-sm text-muted lg:absolute lg:left-1/2 lg:-translate-x-1/2"
                 >
                     <a
                         href="#about"
@@ -594,6 +597,12 @@
                         >Website</a
                     >
                     <a
+                        href="#partners"
+                        class="ulink hover:text-white"
+                        data-testid="nav-partners"
+                        >Partners</a
+                    >
+                    <a
                         href="#faq"
                         class="ulink hover:text-white"
                         data-testid="nav-faq"
@@ -606,23 +615,6 @@
                         >Contact</a
                     >
                 </nav>
-                <a
-                    href="#apply"
-                    class="hidden lg:inline-flex items-center gap-2 bg-brand hover:bg-brandHover text-black font-bold px-4 py-2 text-sm transition"
-                    data-testid="nav-cta-button"
-                >
-                    Get whitelisted
-                    <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2.5"
-                    >
-                        <path d="M5 12h14M13 5l7 7-7 7"></path>
-                    </svg>
-                </a>
                 <button
                     id="mobile-menu-toggle"
                     type="button"
@@ -646,6 +638,25 @@
                 </button>
             </div>
         </header>
+
+        <!-- FLOATING WHITELIST CTA -->
+        <a
+            href="#apply"
+            class="hidden lg:inline-flex fixed top-20 right-5 xl:right-8 z-40 items-center gap-2 bg-brand hover:bg-brandHover text-black font-bold px-4 py-2 text-sm shadow-[0_8px_30px_-6px_rgba(255,90,0,.6)] transition"
+            data-testid="nav-cta-button"
+        >
+            Get whitelisted
+            <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+            >
+                <path d="M5 12h14M13 5l7 7-7 7"></path>
+            </svg>
+        </a>
 
         <!-- MOBILE MENU -->
         <div
@@ -736,6 +747,11 @@
                         >Website</a
                     >
                     <a
+                        href="#partners"
+                        class="mobile-menu-link border-b border-brd py-4 hover:text-brand transition"
+                        >Partners</a
+                    >
+                    <a
                         href="#faq"
                         class="mobile-menu-link border-b border-brd py-4 hover:text-brand transition"
                         >FAQ</a
@@ -792,6 +808,9 @@
                     <h1
                         class="font-display font-bold text-5xl sm:text-6xl lg:text-7xl leading-[0.95] tracking-tight"
                     >
+                        <span class="text-white/70 font-mono text-base sm:text-lg tracking-normal block mb-3"
+                            >Trollflix.com —</span
+                        >
                         Built for <span class="text-brand">original</span><br />
                         meme video creators.
                     </h1>
@@ -3239,6 +3258,463 @@
             </div>
         </section>
 
+        <!-- PARTNERS -->
+        <section
+            id="partners"
+            class="relative overflow-hidden border-b border-brd bg-surface"
+        >
+            <div class="absolute inset-0 grid-bg opacity-30"></div>
+            <div class="absolute inset-0 radial-glow"></div>
+            <div class="relative max-w-7xl mx-auto px-5 md:px-8 py-24 md:py-32">
+                <div
+                    class="font-mono text-xs text-brand uppercase tracking-[0.2em] mb-6"
+                >
+                    // 13 — partners ❤️
+                </div>
+                <h2
+                    class="font-display font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight max-w-4xl reveal"
+                >
+                    🤝 Become a
+                    <span class="text-brand">Creator Partner</span>. ❤️
+                </h2>
+                <p class="mt-8 text-lg md:text-xl text-white/90 max-w-3xl leading-relaxed">
+                    Partners aren't users — they're
+                    <span class="text-white font-bold">co-builders</span>. We
+                    grow the platform together, and the upside is shared.
+                    <span class="text-brand"
+                        >Our success = your success.</span
+                    >
+                    🚢
+                </p>
+
+                <!-- REVENUE SPLIT -->
+                <div
+                    class="mt-14 grid lg:grid-cols-2 gap-0 border border-brand glow-border"
+                >
+                    <div class="p-8 md:p-10 bg-bg">
+                        <div
+                            class="text-[11px] uppercase tracking-widest text-brand mb-4"
+                        >
+                            💸 the split
+                        </div>
+                        <h3
+                            class="font-display font-bold text-3xl md:text-4xl leading-tight"
+                        >
+                            <span class="text-brand">50%</span> of all company
+                            income — split
+                            <span class="text-brand">equally</span> across
+                            partners.
+                        </h3>
+                        <p class="mt-5 text-muted leading-relaxed">
+                            Not just ads. Every revenue stream we build flows
+                            into the same shared pool — divided equally among all
+                            Creator Partners.
+                        </p>
+                        <div class="mt-6 flex flex-wrap gap-2">
+                            <span
+                                class="text-[11px] border border-brd px-2.5 py-1 uppercase tracking-wider text-muted"
+                                >📺 Platform ads</span
+                            >
+                            <span
+                                class="text-[11px] border border-brd px-2.5 py-1 uppercase tracking-wider text-muted"
+                                >⭐ Trollflix VIP</span
+                            >
+                            <span
+                                class="text-[11px] border border-brd px-2.5 py-1 uppercase tracking-wider text-muted"
+                                >🎁 Gifts</span
+                            >
+                            <span
+                                class="text-[11px] border border-brd px-2.5 py-1 uppercase tracking-wider text-muted"
+                                >🛠️ Creator Studio</span
+                            >
+                            <span
+                                class="text-[11px] border border-brd px-2.5 py-1 uppercase tracking-wider text-muted"
+                                >📦 Side-products</span
+                            >
+                            <span
+                                class="text-[11px] border border-brand px-2.5 py-1 uppercase tracking-wider text-brand"
+                                >🎮 Games · 🎬 Movies · 🎵 Music</span
+                            >
+                        </div>
+                    </div>
+                    <div
+                        class="p-8 md:p-10 bg-surface border-t lg:border-t-0 lg:border-l border-brd flex flex-col justify-center"
+                    >
+                        <div
+                            class="text-[11px] uppercase tracking-widest text-muted mb-4"
+                        >
+                            📈 the other 50%
+                        </div>
+                        <h3
+                            class="font-display font-bold text-2xl md:text-3xl leading-tight text-white/90"
+                        >
+                            Reinvested into development &amp; growth.
+                        </h3>
+                        <p class="mt-5 text-muted leading-relaxed">
+                            Better tools, bigger reach, more ways to earn — so
+                            the pool everyone shares keeps getting larger. 🚀
+                        </p>
+                    </div>
+                </div>
+
+                <!-- WHAT PARTNERS GET -->
+                <div class="mt-16">
+                    <h3
+                        class="font-display font-bold text-2xl md:text-3xl tracking-tight mb-8"
+                    >
+                        What partners get 🎁
+                    </h3>
+                    <div
+                        class="grid sm:grid-cols-2 lg:grid-cols-3 gap-0 border border-brd"
+                    >
+                        <!-- early bonus -->
+                        <div
+                            class="tilt p-8 border-b sm:border-r border-brd bg-bg min-h-[220px] flex flex-col"
+                        >
+                            <div class="text-3xl mb-4">🏅</div>
+                            <h4
+                                class="font-display font-bold text-xl mb-2"
+                            >
+                                Early-partner bonuses
+                            </h4>
+                            <p class="text-sm text-muted leading-relaxed">
+                                Get in first, earn more. Early partners receive
+                                <span class="text-white font-bold"
+                                    >extra rewards</span
+                                >
+                                over latecomers — because you helped build it.
+                            </p>
+                        </div>
+                        <!-- creator studio -->
+                        <div
+                            class="tilt p-8 border-b lg:border-r border-brd bg-bg min-h-[220px] flex flex-col"
+                        >
+                            <div class="text-3xl mb-4">🛠️</div>
+                            <h4
+                                class="font-display font-bold text-xl mb-2"
+                            >
+                                Free
+                                <a
+                                    href="https://www.trollflix.com/creator-studio"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-brand hover:underline"
+                                    >Creator Studio</a
+                                >
+                            </h4>
+                            <p class="text-sm text-muted leading-relaxed">
+                                Full access to the pro toolkit —
+                                <span class="text-white font-bold">free</span>
+                                for partners. The rest wait or pay.
+                            </p>
+                        </div>
+                        <!-- tools -->
+                        <div
+                            class="tilt p-8 border-b sm:border-r lg:border-r-0 border-brd bg-bg min-h-[220px] flex flex-col"
+                        >
+                            <div class="text-3xl mb-4">🤖</div>
+                            <h4
+                                class="font-display font-bold text-xl mb-2"
+                            >
+                                Free tools &amp; AI tech
+                            </h4>
+                            <p class="text-sm text-muted leading-relaxed">
+                                We constantly ship
+                                <span class="text-white font-bold"
+                                    >editing tools</span
+                                >
+                                and
+                                <span class="text-brand">free AI</span>
+                                to power your content — partners get them first.
+                            </p>
+                        </div>
+                        <!-- referral -->
+                        <div
+                            class="tilt p-8 border-b lg:border-b-0 sm:border-r border-brd bg-bg min-h-[220px] flex flex-col"
+                        >
+                            <div class="text-3xl mb-4">🔗</div>
+                            <h4
+                                class="font-display font-bold text-xl mb-2"
+                            >
+                                <span class="text-brand">$0.50</span> per
+                                referral
+                            </h4>
+                            <p class="text-sm text-muted leading-relaxed">
+                                Bring your audience. Earn
+                                <span class="text-white font-bold">$0.50</span>
+                                for every user who downloads the Trollflix app
+                                via your link.
+                            </p>
+                            <p class="mt-3 text-xs text-muted">
+                                📩 Email
+                                <a
+                                    href="mailto:info@trollflix.com"
+                                    class="text-brand hover:underline"
+                                    >info@trollflix.com</a
+                                >
+                                to grab your referral link.
+                            </p>
+                        </div>
+                        <!-- shared upside -->
+                        <div
+                            class="tilt p-8 border-b lg:border-b-0 lg:border-r border-brd bg-bg min-h-[220px] flex flex-col"
+                        >
+                            <div class="text-3xl mb-4">💸</div>
+                            <h4
+                                class="font-display font-bold text-xl mb-2"
+                            >
+                                Real revenue share
+                            </h4>
+                            <p class="text-sm text-muted leading-relaxed">
+                                As the platform grows, so does your cut —
+                                <span class="text-white font-bold"
+                                    >equally split</span
+                                >
+                                across every partner, forever.
+                            </p>
+                        </div>
+                        <!-- weekly bonus teaser -->
+                        <div
+                            class="tilt p-8 bg-bg min-h-[220px] flex flex-col"
+                        >
+                            <div class="text-3xl mb-4">⚡</div>
+                            <h4
+                                class="font-display font-bold text-xl mb-2"
+                            >
+                                Weekly activity bonus
+                            </h4>
+                            <p class="text-sm text-muted leading-relaxed">
+                                Stay active, get paid weekly. Stack up to
+                                <span class="text-brand font-bold">$3</span>
+                                every week — details below. 👇
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WEEKLY ACTIVITY BONUS -->
+                <div class="mt-16">
+                    <div
+                        class="flex flex-wrap items-end justify-between gap-4 mb-8"
+                    >
+                        <h3
+                            class="font-display font-bold text-2xl md:text-3xl tracking-tight"
+                        >
+                            ⚡ Weekly activity bonus
+                        </h3>
+                        <div
+                            class="font-mono text-xs text-muted uppercase tracking-widest"
+                        >
+                            🔄 resets every Monday, early morning
+                        </div>
+                    </div>
+                    <p class="text-muted max-w-2xl leading-relaxed mb-8">
+                        For showing up and contributing to the community. Complete
+                        the tasks in a single week and
+                        <span class="text-white font-bold">stack the rewards</span
+                        >.
+                    </p>
+
+                    <div class="grid md:grid-cols-3 gap-0 border border-brd">
+                        <!-- task 1 -->
+                        <div
+                            class="p-8 border-b md:border-b-0 md:border-r border-brd bg-bg flex flex-col"
+                        >
+                            <div
+                                class="flex items-center justify-between mb-5"
+                            >
+                                <span
+                                    class="font-mono text-xs text-muted uppercase tracking-widest"
+                                    >task 01</span
+                                >
+                                <span
+                                    class="font-display font-bold text-2xl text-brand"
+                                    >+$1</span
+                                >
+                            </div>
+                            <div class="text-3xl mb-4">📤</div>
+                            <h4 class="font-display font-bold text-lg mb-2">
+                                Upload 7 contents
+                            </h4>
+                            <p class="text-sm text-muted leading-relaxed">
+                                In one week —
+                                <span class="text-white font-bold"
+                                    >Curated or Original</span
+                                >, doesn't matter.
+                            </p>
+                        </div>
+                        <!-- task 2 -->
+                        <div
+                            class="p-8 border-b md:border-b-0 md:border-r border-brd bg-bg flex flex-col"
+                        >
+                            <div
+                                class="flex items-center justify-between mb-5"
+                            >
+                                <span
+                                    class="font-mono text-xs text-muted uppercase tracking-widest"
+                                    >task 02</span
+                                >
+                                <span
+                                    class="font-display font-bold text-2xl text-brand"
+                                    >×2 → $2</span
+                                >
+                            </div>
+                            <div class="text-3xl mb-4">💬</div>
+                            <h4 class="font-display font-bold text-lg mb-2">
+                                10 quality comments
+                            </h4>
+                            <p class="text-sm text-muted leading-relaxed">
+                                Funny, non-spammy,
+                                <span class="text-white font-bold"
+                                    >non-reaction</span
+                                >
+                                comments — doubles your bonus.
+                            </p>
+                        </div>
+                        <!-- task 3 -->
+                        <div class="p-8 bg-bg flex flex-col">
+                            <div
+                                class="flex items-center justify-between mb-5"
+                            >
+                                <span
+                                    class="font-mono text-xs text-muted uppercase tracking-widest"
+                                    >task 03</span
+                                >
+                                <span
+                                    class="font-display font-bold text-2xl text-brand"
+                                    >+$1</span
+                                >
+                            </div>
+                            <div class="text-3xl mb-4">🖼️</div>
+                            <h4 class="font-display font-bold text-lg mb-2">
+                                10 image memes
+                            </h4>
+                            <p class="text-sm text-muted leading-relaxed">
+                                Upload 10 image memes in the same week for an
+                                <span class="text-white font-bold">extra $1</span>.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- total -->
+                    <div
+                        class="mt-6 flex flex-wrap items-center justify-between gap-4 border border-brand bg-brand/10 px-6 md:px-8 py-6"
+                    >
+                        <div
+                            class="font-display font-bold text-xl md:text-2xl"
+                        >
+                            🏆 All 3 tasks in one week
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span
+                                class="font-mono text-xs text-muted uppercase tracking-widest"
+                                >total</span
+                            >
+                            <span
+                                class="font-display font-bold text-3xl md:text-4xl text-brand"
+                                >$3 / week</span
+                            >
+                        </div>
+                    </div>
+
+                    <!-- cooldown counter -->
+                    <div
+                        class="mt-6 flex flex-wrap items-center justify-between gap-4 border border-brd bg-surface px-6 md:px-8 py-6"
+                    >
+                        <div class="flex items-center gap-3">
+                            <span class="live-dot"></span>
+                            <div
+                                class="font-display font-bold text-xl md:text-2xl"
+                            >
+                                ⏳ Next reset in
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start sm:items-end">
+                            <span
+                                id="partner-cooldown"
+                                class="font-display font-bold text-2xl md:text-4xl text-brand tabular-nums"
+                                >—d —h —m —s</span
+                            >
+                            <span
+                                class="font-mono text-[11px] text-muted uppercase tracking-widest mt-1"
+                                >🔄 Monday · 00:00 UTC</span
+                            >
+                        </div>
+                    </div>
+
+                    <!-- progress & referrals -->
+                    <a
+                        href="https://www.trollflix.com/partnership"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="tilt group mt-6 flex flex-wrap items-center justify-between gap-4 border border-brand glow-border bg-bg px-6 md:px-8 py-6 hover:bg-brand/5 transition"
+                        data-testid="partner-progress-link"
+                    >
+                        <div class="flex items-center gap-3">
+                            <span class="text-2xl">📊</span>
+                            <div>
+                                <div
+                                    class="font-display font-bold text-xl md:text-2xl"
+                                >
+                                    Check my weekly progress &amp; referrals
+                                </div>
+                                <div
+                                    class="font-mono text-[11px] text-muted uppercase tracking-widest mt-1"
+                                >
+                                    login required · opens in a new tab
+                                </div>
+                            </div>
+                        </div>
+                        <span
+                            class="shrink-0 inline-flex items-center gap-2 text-brand font-bold text-sm uppercase tracking-wider"
+                        >
+                            Open dashboard
+                            <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2.5"
+                                class="group-hover:translate-x-1 transition-transform"
+                            >
+                                <path d="M5 12h14M13 5l7 7-7 7"></path>
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+
+                <!-- CTA -->
+                <div
+                    class="mt-16 flex flex-col sm:flex-row items-start sm:items-center gap-5 border-t border-brd pt-10"
+                >
+                    <p class="text-lg text-white/90 max-w-xl">
+                        🎯 Ready to build with us? Grab your spot —
+                        <span class="text-brand font-bold"
+                            >early partners earn the most.</span
+                        >
+                    </p>
+                    <a
+                        href="#apply"
+                        class="shrink-0 inline-flex items-center gap-2 bg-brand hover:bg-brandHover text-black font-bold px-6 py-3.5 text-sm uppercase tracking-wider transition"
+                        data-testid="partners-cta-btn"
+                    >
+                        Get whitelisted
+                        <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                        >
+                            <path d="M5 12h14M13 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <!-- APPLICATION FORM -->
         <section id="apply" class="relative border-b border-brd bg-surface">
             <div class="max-w-4xl mx-auto px-5 md:px-8 py-24 md:py-32">
@@ -3246,7 +3722,7 @@
                     <div
                         class="font-mono text-xs text-brand uppercase tracking-[0.2em] mb-4"
                     >
-                        // 13 — whitelist request
+                        // 14 — whitelist request
                     </div>
                     <h2
                         class="font-display font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight"
@@ -3459,7 +3935,7 @@
                     <div
                         class="font-mono text-xs text-brand uppercase tracking-[0.2em] mb-4"
                     >
-                        // 14 — faq
+                        // 15 — faq
                     </div>
                     <h2
                         class="font-display font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight"
@@ -3938,7 +4414,7 @@
                                 >
                             </li>
                             <li class="text-muted leading-relaxed">
-                                Suite RA01, 195-197 Wood Street, London, E17 3NU
+                                London, United Kingdom, Suite RA01, 195-197 Wood Street, E17 3NU
                             </li>
                         </ul>
                     </div>
@@ -4085,8 +4561,37 @@
                 if (window.innerWidth >= 1024) setMobileMenu(false);
             });
 
-            // live MemeJam from production data
-            const TROLLFLIX_BASE_URL = "https://www.trollflix.com";
+            // Resolve the Trollflix app base URL per environment:
+            //   local dev / dev host  -> https://dev.trollflix.com
+            //   deployed landing (trollflixapp.com) -> https://www.trollflix.com
+            const TROLLFLIX_BASE_URL = (function () {
+                const h = location.hostname;
+                if (
+                    h === "localhost" ||
+                    h === "127.0.0.1" ||
+                    h === "" ||
+                    h.startsWith("dev.") ||
+                    h.startsWith("staging.")
+                ) {
+                    return "https://dev.trollflix.com";
+                }
+                return "https://www.trollflix.com";
+            })();
+
+            // Rewrite any static prod links to the resolved environment so
+            // testing locally/on dev doesn't bounce you to production.
+            if (TROLLFLIX_BASE_URL !== "https://www.trollflix.com") {
+                document
+                    .querySelectorAll('a[href^="https://www.trollflix.com"]')
+                    .forEach((a) => {
+                        a.href = a
+                            .getAttribute("href")
+                            .replace(
+                                "https://www.trollflix.com",
+                                TROLLFLIX_BASE_URL,
+                            );
+                    });
+            }
             const LATEST_MEMEJAM_API_URL =
                 "https://backend.trollflix.com/api/php/memejam/get_latest_memejam";
             const LATEST_ORIGINALS_API_URL =
@@ -4490,6 +4995,44 @@
                     "section > div > h2, section .tilt, section .glow-border",
                 )
                 .forEach((el) => io.observe(el));
+
+            // Weekly bonus cooldown — counts down to next Monday 00:00 UTC
+            (function () {
+                const el = document.getElementById("partner-cooldown");
+                if (!el) return;
+                function nextResetUTC() {
+                    const now = new Date();
+                    const next = new Date(
+                        Date.UTC(
+                            now.getUTCFullYear(),
+                            now.getUTCMonth(),
+                            now.getUTCDate(),
+                            0,
+                            0,
+                            0,
+                            0,
+                        ),
+                    );
+                    // days until next Monday (getUTCDay: 0=Sun..1=Mon)
+                    let add = (8 - now.getUTCDay()) % 7;
+                    if (add === 0) add = 7; // always the upcoming Monday, never "now"
+                    next.setUTCDate(next.getUTCDate() + add);
+                    return next;
+                }
+                function tick() {
+                    let diff = nextResetUTC().getTime() - Date.now();
+                    if (diff < 0) diff = 0;
+                    const s = Math.floor(diff / 1000);
+                    const d = Math.floor(s / 86400);
+                    const h = Math.floor((s % 86400) / 3600);
+                    const m = Math.floor((s % 3600) / 60);
+                    const sec = s % 60;
+                    el.textContent =
+                        d + "d " + h + "h " + m + "m " + sec + "s";
+                }
+                tick();
+                setInterval(tick, 1000);
+            })();
         </script>
     </body>
 </html>
