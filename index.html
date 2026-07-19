@@ -160,8 +160,10 @@
         </script>
 
         <style>
+            /* Instant hash jumps only — smooth scroll was landing short of
+               #partners (sticky header + late layout). Use JS scrollToHash. */
             html {
-                scroll-behavior: smooth;
+                scroll-behavior: auto;
             }
             html,
             body {
@@ -172,9 +174,13 @@
                 font-family: "JetBrains Mono", monospace;
                 -webkit-font-smoothing: antialiased;
             }
+            /* Sticky header is ~4rem; extra margin avoids landing on the prior section. */
             section,
             footer {
-                scroll-margin-top: 4rem;
+                scroll-margin-top: 5.5rem;
+            }
+            #partners {
+                scroll-margin-top: 5.5rem;
             }
             h1,
             h2,
@@ -5030,7 +5036,7 @@
                     );
                     setApplyButtonState(true, "Submitted");
                     applySuccess?.scrollIntoView({
-                        behavior: "smooth",
+                        behavior: "auto",
                         block: "center",
                     });
                 } catch {
@@ -5040,6 +5046,93 @@
                     );
                 }
             });
+
+            /**
+             * Reliable in-page hash navigation (e.g. /#partners, ?webview=1#partners).
+             * Instant scroll only — smooth scroll was undershooting when layout
+             * shifted (fonts, images, sticky header). Re-runs after paint so
+             * late layout still settles on the correct section.
+             */
+            (function setupHashScroll() {
+                const scrollToHash = (behavior) => {
+                    const raw = (location.hash || "").replace(/^#/, "");
+                    if (!raw) return false;
+                    let el = null;
+                    try {
+                        el = document.getElementById(raw);
+                        if (!el) {
+                            el = document.querySelector(
+                                '[name="' +
+                                    CSS.escape(raw) +
+                                    '"], #' +
+                                    CSS.escape(raw),
+                            );
+                        }
+                    } catch {
+                        el = document.getElementById(raw);
+                    }
+                    if (!el) return false;
+                    el.scrollIntoView({
+                        behavior: behavior || "auto",
+                        block: "start",
+                    });
+                    return true;
+                };
+
+                const scrollToHashReliable = () => {
+                    // Immediate + next frames (layout) + after fonts if available.
+                    scrollToHash("auto");
+                    requestAnimationFrame(() => {
+                        scrollToHash("auto");
+                        requestAnimationFrame(() => scrollToHash("auto"));
+                    });
+                    if (document.fonts && document.fonts.ready) {
+                        document.fonts.ready.then(() => scrollToHash("auto"));
+                    }
+                    // Late content (API cards) can still shift; one more pass.
+                    setTimeout(() => scrollToHash("auto"), 300);
+                    setTimeout(() => scrollToHash("auto"), 800);
+                };
+
+                // Initial load with hash (including WebView opens).
+                if (location.hash) {
+                    if (document.readyState === "loading") {
+                        document.addEventListener(
+                            "DOMContentLoaded",
+                            scrollToHashReliable,
+                        );
+                    } else {
+                        scrollToHashReliable();
+                    }
+                    window.addEventListener("load", () =>
+                        scrollToHash("auto"),
+                    );
+                }
+
+                window.addEventListener("hashchange", () =>
+                    scrollToHashReliable(),
+                );
+
+                // Intercept in-page #anchor clicks so they never use smooth scroll.
+                document.addEventListener(
+                    "click",
+                    (event) => {
+                        const a = event.target.closest("a[href^='#']");
+                        if (!a) return;
+                        const href = a.getAttribute("href") || "";
+                        if (href.length < 2 || href === "#") return;
+                        const id = href.slice(1);
+                        const el = document.getElementById(id);
+                        if (!el) return;
+                        event.preventDefault();
+                        if (location.hash !== href) {
+                            history.pushState(null, "", href);
+                        }
+                        scrollToHashReliable();
+                    },
+                    true,
+                );
+            })();
 
             // subtle fade-in on scroll
             const io = new IntersectionObserver(
