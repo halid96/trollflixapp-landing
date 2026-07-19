@@ -3324,6 +3324,7 @@
                                 >🎁 Gifts</span
                             >
                             <span
+                                data-cs-hide
                                 class="text-[11px] border border-brd px-2.5 py-1 uppercase tracking-wider text-muted"
                                 >🛠️ Creator Studio</span
                             >
@@ -3385,8 +3386,9 @@
                                 over latecomers — because you helped build it.
                             </p>
                         </div>
-                        <!-- creator studio -->
+                        <!-- creator studio (hidden in app WebView via data-cs-hide) -->
                         <div
+                            data-cs-hide
                             class="tilt p-8 border-b lg:border-r border-brd bg-bg min-h-[220px] flex flex-col"
                         >
                             <div class="text-3xl mb-4">🛠️</div>
@@ -4352,6 +4354,15 @@
                                     >Verified accounts</a
                                 >
                             </li>
+                            <li>
+                                <a
+                                    href="https://www.trollflix.com/creator-studio"
+                                    class="ulink hover:text-white text-muted break-words"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    >Creator Studio</a
+                                >
+                            </li>
                         </ul>
                     </div>
                     <div class="min-w-0">
@@ -4592,6 +4603,58 @@
                             );
                     });
             }
+
+            // App WebView (Expo) opens this page with ?webview=1 (or #partners
+            // after query). Hide ALL Creator Studio destinations so SaaS
+            // purchase pages are not shown inside the store-distributed app.
+            (function hideCreatorStudioInAppWebview() {
+                try {
+                    const params = new URLSearchParams(location.search);
+                    if (params.get("webview") !== "1") return;
+
+                    document.documentElement.classList.add("app-webview");
+
+                    const isCreatorStudioHref = (href) => {
+                        if (!href) return false;
+                        try {
+                            const u = new URL(href, location.origin);
+                            return (
+                                u.pathname.replace(/\/$/, "") ===
+                                    "/creator-studio" ||
+                                u.pathname.indexOf("/creator-studio/") === 0
+                            );
+                        } catch {
+                            return /creator-studio/i.test(String(href));
+                        }
+                    };
+
+                    document.querySelectorAll("a[href]").forEach((a) => {
+                        if (!isCreatorStudioHref(a.getAttribute("href")))
+                            return;
+                        // Prefer removing the whole list item / CTA wrapper when
+                        // the link is the only meaningful child.
+                        const li = a.closest("li");
+                        const wrap =
+                            a.closest("[data-cs-cta]") ||
+                            a.closest(".cs-hide-in-webview");
+                        if (wrap) {
+                            wrap.remove();
+                        } else if (li && li.querySelectorAll("a").length === 1) {
+                            li.remove();
+                        } else {
+                            a.remove();
+                        }
+                    });
+
+                    // Badge / non-link mentions in marketing copy that are
+                    // exclusively CS callouts.
+                    document
+                        .querySelectorAll("[data-cs-hide], .cs-hide-in-webview")
+                        .forEach((el) => el.remove());
+                } catch (e) {
+                    console.warn("webview CS hide failed", e);
+                }
+            })();
             const LATEST_MEMEJAM_API_URL =
                 "https://backend.trollflix.com/api/php/memejam/get_latest_memejam";
             const LATEST_ORIGINALS_API_URL =
